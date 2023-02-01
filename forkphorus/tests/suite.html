@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Test Suite</title>
+
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../phosphorus.css">
+  <script src="../lib/purify.min.js"></script>
+  <script src="../lib/scratch-sb1-converter.js"></script>
+  <script src="../lib/jszip.min.js"></script>
+  <script src="../lib/fontfaceobserver.standalone.js"></script>
+  <script src="../lib/canvg.min.js"></script>
+  <script src="../phosphorus.dist.js"></script>
+  <script src="../common.js"></script>
+
+  <style>
+  #suite-container {
+    position: relative;
+    border: 1px solid black;
+    width: 480px;
+    height: 360px;
+    margin: 5px 0;
+  }
+  .suite-failed {
+    background-color: rgb(255, 204, 204);
+  }
+  .suite-passed {
+    background-color: rgb(204, 255, 204);
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+  th {
+    min-width: 100px;
+  }
+  td {
+    vertical-align: top;
+  }
+  table.border, table.border td, table.border th {
+    border: 1px solid black;
+  }
+
+  .cell-name {
+    font-family: monospace;
+  }
+  .cell-result {
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+  .cell-result-okay {
+    background-color: #4aea4a;
+  }
+  .cell-result-fail {
+    background-color: #ea5b5b;
+  }
+  .cell-total-time, .cell-project-time {
+    text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+  <h1>Test suite</h1>
+
+  <p>Test suite for forkphorus. <a href="https://github.com/forkphorus/forkphorus/tree/master/tests#readme">More information</a>.</p>
+
+  <table>
+    <tr>
+      <td><div id="suite-container"></div></td>
+      <td><div id="suite-final-results"></div></td>
+    </tr>
+  </table>
+
+  <table class="border">
+    <thead>
+      <tr>
+        <th><!-- Project Path --></th>
+        <th>Result</th>
+        <th>Total Time</th>
+        <th>Project Time</th>
+      </tr>
+    </thead>
+    <tbody id="suite-table"></tbody>
+  </table>
+
+  <script src="suite.js"></script>
+  <script src="tests.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      if (!P.suite) {
+        alert('test suite could not load');
+      }
+
+      if (location.search.indexOf('benchmark') > -1) {
+        P.suite.defaults.repeatCount = 50;
+      }
+
+      P.audio.context = null;
+
+      if (location.search.indexOf('nostart') === -1) {
+        P.suite.run(P.suite.tests());
+      } else {
+        window.runTests = function() {
+          P.suite.run(P.suite.tests());
+        };
+      }
+    }());
+  </script>
+    
+</body>
+
+</html>
