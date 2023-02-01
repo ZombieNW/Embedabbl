@@ -7,6 +7,7 @@ An easily embeddable url-query based page for the forkphorus Scratch Player.
 Well this one is probably the most useless in this collection, it's basically
 an exact fork of [their github pages repo](https://github.com/forkphorus/forkphorus.github.io) BUT it has support for sprite fencing using url parameters.
 I'll make a pull request and if it goes through I'll redirect this.
+Some very hacky code was done to this version though, sorry forkphorus devs.
 
 ## Setup
 Using this is as easy as just making an iframe with your project ID in it!
