@@ -1,5 +1,8 @@
-# Embedabbl
-### An easier way to embed games into your website.
+<div style="text-align: center;">
+    <img width="15%" src="icon.png"></img>
+    <h1>Embedabbl</h1>
+    <h3>An easier way to embed games into your website.</h3>
+</div>
 
 ![Language](https://badgen.net/badge/license/MIT/red) ![Language](https://badgen.net/badge/language/HTML&CSS&JS/red)
 
