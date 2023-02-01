@@ -15,5 +15,7 @@ Using this is as easy as just making an iframe with your rom in it!
 
 ### Working example
 ```html
-  <iframe width="800px" height="600px" src="https://embedabbl.zombienw.com/jsdos/index.html?jsdos=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fdoom.jsdos?anonymous=1" frameborder="0"></iframe>
+  <iframe width="800px" height="600px" src="https://embedabbl.zombienw.com/jsdos/index.html?jsdos=https://embedabbl.zombienw.com/jsdos/test.jsdos" frameborder="0"></iframe>
 ```
+
+Test JSDos file is Doom Shareware Version by id Software.
