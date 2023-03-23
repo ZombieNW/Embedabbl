@@ -2,19 +2,19 @@ const loadingHtmlMinified = `<div id="embedLoadingBody" class="embedLoadingBody"
 
 //Adds content in above variable to given object
 function enableLoadingScreen(object) {
-  object.innerHTML += loadingHtmlMinified;
+    object.innerHTML += loadingHtmlMinified;
 }
 
 //Removes content added by enable loading screen
 function disableLoadingScreen() {
-  document.getElementById("embedLoadingBody").remove();
+    document.getElementById("embedLoadingBody").remove();
 }
 
 //Replaces loading display with an error message
 //message: The title
 //details: The subtitle
 function displayError(message, details) {
-  document.getElementById("embedLoadingDisplay").innerHTML = `<h1 class="embedLoadingError">${message}</h1><p>${details}</p>`;
+    document.getElementById("embedLoadingDisplay").innerHTML = `<h1 class="embedLoadingError">${message}</h1><p>${details}</p>`;
 }
 
 //Gets URL Parameter From Key
@@ -22,56 +22,55 @@ function displayError(message, details) {
 //validityCheck: Returns false if file doesn't end in validityCheckExtension
 //expectedFileExtension: Expected url file extension, returns false if not found
 function getUrlParameter(key, validityCheck, validityCheckExtension) {
-  var sPageURL = window.location.search.substring(1), sURLVariables = sPageURL.split('&'), sParameterName, i;//Build Page URL
-  for (i = 0; i < sURLVariables.length; i++) {
-    sParameterName = sURLVariables[i].split('=');
-    if (sParameterName[0] === key) {
-      var returnedUrlParam = sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);//Get Param Value
-      if(validityCheck && returnedUrlParam.split('/').pop().indexOf('.') > -1){//If check enabled and has a file extension
-        if(validityCheckExtension && returnedUrlParam.split('/').pop().indexOf('.') == validityCheckExtension){//If checkextension on and is true
-          return returnedUrlParam;
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName, i; //Build Page URL
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === key) {
+            var returnedUrlParam = sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]); //Get Param Value
+            if (validityCheck && returnedUrlParam.split('/').pop().indexOf('.') > -1) { //If check enabled and has a file extension
+                if (validityCheckExtension && returnedUrlParam.split('/').pop().indexOf('.') == validityCheckExtension) { //If checkextension on and is true
+                    return returnedUrlParam;
+                } else if (!validityCheckExtension) return returnedUrlParam; //Return URL Param if check extension is off
+                else return false; //If checkextension is on but fails
+            } else if (!validityCheck) return returnedUrlParam; //Return URL Param if validity check is off
+            else return false; // If validitiy check is on but fails
         }
-        else if(!validityCheckExtension) return returnedUrlParam;//Return URL Param if check extension is off
-        else return false;//If checkextension is on but fails
-      }
-      else if(!validityCheck) return returnedUrlParam;//Return URL Param if validity check is off
-      else return false;// If validitiy check is on but fails
     }
-  }
-  return false;
+    return false;
 };
 
 //Checks url for 404 or similar
 //url: The URL to check
 //callback: the code to execute afterwards (stupid async functions)
-function brokenUrlCheck(url, callback){
-  fetch(executableUrl, {
-      method: 'GET',
-      headers: {
-      Accept: 'application/json',
-    }
-  })
-  .catch(e => {//Url Doesn't Exist Error
-    console.log(e);
-    displayError(`Error: File Doesn't Exist`, `Given SWF ${executableUrl ? executableUrl : ""} doesn't exist.`);//Invalid Url
-  })
-  .then(e => {//If Valid File (Non-404)
-    console.log(e.status)
-    if(e.status == 200){
-      callback();        
-    }
-    else{
-        displayError(`Error: File Not Found`, `Given SWF ${executableUrl ? executableUrl : ""} not found.`);//Invalid Url
-    }
-  })
-  .catch(e => {//Callback Error
-    console.log(e);
-    displayError(`Error:`, `${e ? e : ""}`);//Invalid Url
-  });
+function brokenUrlCheck(url, callback) {
+    fetch(executableUrl, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            }
+        })
+        .catch(e => { //Url Doesn't Exist Error
+            console.log(e);
+            displayError(`Error: File Doesn't Exist`, `Given SWF ${executableUrl ? executableUrl : ""} doesn't exist.`); //Invalid Url
+        })
+        .then(e => { //If Valid File (Non-404)
+            console.log(e.status)
+            if (e.status == 200) {
+                callback();
+            } else {
+                displayError(`Error: File Not Found`, `Given SWF ${executableUrl ? executableUrl : ""} not found.`); //Invalid Url
+            }
+        })
+        .catch(e => { //Callback Error
+            console.log(e);
+            displayError(`Error:`, `${e ? e : ""}`); //Invalid Url
+        });
 }
 
 //Checks if path ends in file extention
 //pathname: The pathname to check
 function isFile(pathname) {
-  return pathname.split('/').pop().indexOf('.') > -1;
+    return pathname.split('/').pop().indexOf('.') > -1;
 }
