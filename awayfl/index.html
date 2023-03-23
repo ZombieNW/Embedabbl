@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<head>
-  <meta name="viewport" content="height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-  <title>Embedabbl - awayfl</title>
-  <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
-  <style>
-    * {
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../icon.png" type="image/x-icon">
+        <title>Embedabbl - awayfl</title>
+        <script src="dist/loader.js"></script>
+    </head>
+    <style>
+      * {
       margin: 0;
       padding: 0;
     }
@@ -12,68 +17,60 @@
     canvas {
       outline: none
     }
-
-    html,
-    body {
-      margin: 0;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-      background-color: transparent;
-    }
-  </style>
-  <script src="dist/loader.js"></script>
-</head>
-<body>
-  <script>
-    var getUrlParameter = function getUrlParameter(sParam) {
-      var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-      for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        html, body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
         }
-      }
-      return false;
-    };
-    var swfurl = getUrlParameter('swf');
-    if (!swfurl) alert("No SWF Provided");
-    const gameConfig = {
-      width: 550,
-      height: 400,
-      splash: './todo.jpg',
-      progress: { // optional
-        back: 'cover url(./progressBg.jpg)',
-        line: "#cc0022", // or image, it will passed to progressLine background,
-        rect: [0, 0.9, 1, 0.1] // x, y, width, height of preogress line relative contianer 
-      },
-      baseUrl: 'dist',
-      runtime: ['dist/runtime.js'],
-      binary: [{
-        path: swfurl,
-        resourceType: 'GAME'
-      }],
-    }
-    window.addEventListener("load", () => {
-      const config = gameConfig;
-      AWAYFL.LegacyLoader.init(config);
-      AWAYFL.LegacyLoader.runGame((fill) => {
-        window.dispatchEvent(new CustomEvent('awayfl-player-progress', {
-          detail: fill
-        }));
-      }, (config, hideLoader) => {
-        const player = new AWAYFL.Player(document, config);
-        window.dispatchEvent(new CustomEvent('awayfl-player-init', {
-          detail: player
-        }));
-        player.loadAndPlay().then((_, hide) => {
-          window.dispatchEvent(new CustomEvent('awayfl-player-load'));
-          hide && hide();
+    </style>
+    <body>
+    </body>
+    <script src="../loading.js"></script>
+    <script>
+        //Embedabbl
+        enableLoadingScreen(document.body);
+        var executableUrl = getUrlParameter("swf", true);
+        if (!executableUrl) displayError(`Error: SWF Bundle URL Not Valid`, `Given SWF Bundle ${executableUrl ? executableUrl : ""} not valid.`);//Invalid Url
+        brokenUrlCheck(executableUrl, () =>{
+            //Core Logic
+            const gameConfig = {
+              width: 550,
+              height: 400,
+              splash: './todo.jpg',
+              progress: { // optional
+                back: 'cover url(./progressBg.jpg)',
+                line: "#cc0022", // or image, it will passed to progressLine background,
+                rect: [0, 0.9, 1, 0.1] // x, y, width, height of preogress line relative contianer 
+              },
+              baseUrl: 'dist',
+              runtime: ['dist/runtime.js'],
+              binary: [{
+                path: executableUrl,
+                resourceType: 'GAME'
+              }],
+            }
+            window.addEventListener("load", () => {
+              const config = gameConfig;
+              AWAYFL.LegacyLoader.init(config);
+              AWAYFL.LegacyLoader.runGame((fill) => {
+                window.dispatchEvent(new CustomEvent('awayfl-player-progress', {
+                  detail: fill
+                }));
+              }, (config, hideLoader) => {
+                const player = new AWAYFL.Player(document, config);
+                window.dispatchEvent(new CustomEvent('awayfl-player-init', {
+                  detail: player
+                }));
+                player.loadAndPlay().then((_, hide) => {
+                  window.dispatchEvent(new CustomEvent('awayfl-player-load'));
+                  hide && hide();
+                  disableLoadingScreen();
+                });
+              })
+            });
         });
-      })
-    });
-  </script>
-</body>
+    </script>
+</html>
