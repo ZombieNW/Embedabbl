@@ -53,14 +53,14 @@ function brokenUrlCheck(url, callback) {
         })
         .catch(e => { //Url Doesn't Exist Error
             console.log(e);
-            displayError(`Error: File Doesn't Exist`, `Given SWF ${executableUrl ? executableUrl : ""} doesn't exist.`); //Invalid Url
+            displayError(`Error: File Doesn't Exist`, `Given File ${executableUrl ? executableUrl : ""} doesn't exist.`); //Invalid Url
         })
         .then(e => { //If Valid File (Non-404)
             console.log(e.status)
             if (e.status == 200) {
                 callback();
             } else {
-                displayError(`Error: File Not Found`, `Given SWF ${executableUrl ? executableUrl : ""} not found.`); //Invalid Url
+                displayError(`Error: File Not Found`, `Given File ${executableUrl ? executableUrl : ""} not found.`); //Invalid Url
             }
         })
         .catch(e => { //Callback Error
