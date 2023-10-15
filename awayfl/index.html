@@ -33,6 +33,7 @@
 	<script>
 		//Embedabbl
 		enableLoadingScreen(document.body);
+		var funnyVariable = 0;
 		var executableUrl = getUrlParameter("swf", true);
 		if (!executableUrl) displayError(`Error: SWF Bundle URL Not Valid`, `Given SWF Bundle ${executableUrl ? executableUrl : ""} not valid.`); //Invalid Url
 		brokenUrlCheck(executableUrl, () => {
@@ -40,6 +41,7 @@
 			const gameConfig = {
 				width: 550,
 				height: 400,
+				debug: true,
 				splash: './todo.jpg',
 				progress: { // optional
 					back: 'cover url(./progressBg.jpg)',
@@ -56,7 +58,13 @@
 					name: "fonts.swf",
             		path: "dist/assets/fonts.swf",
 				}],
-			}
+			}	
+			//i love hacky code
+			setTimeout(function() {
+				if (funnyVariable === 0) {
+					location.reload();
+				}
+			}, 4000); // 4 seconds = 4000 milliseconds
 			window.addEventListener("load", () => {
 				const config = gameConfig;
 				AWAYFL.LegacyLoader.init(config);
@@ -64,6 +72,7 @@
 					window.dispatchEvent(new CustomEvent('awayfl-player-progress', {
 						detail: fill
 					}));
+					funnyVariable = fill;
 				}, (config, hideLoader) => {
 					const player = new AWAYFL.Player(document, config);
 					window.dispatchEvent(new CustomEvent('awayfl-player-init', {
