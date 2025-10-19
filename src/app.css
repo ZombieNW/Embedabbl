@@ -1,1 +1,13 @@
 @import 'tailwindcss';
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+}
+
+pre > code {
+	border-radius: var(--radius-lg);
+}

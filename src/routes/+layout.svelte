@@ -1,12 +1,13 @@
 <script>
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="/icon.png" />
+	<title>Embedabbl - Content Embedder</title>
+	<meta name="description" content="An easier way to embed content into your website." />
 </svelte:head>
 
 {@render children?.()}
