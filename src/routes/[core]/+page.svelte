@@ -20,7 +20,7 @@
 	<title>{isValid ? `${core.name} - Embedabbl` : 'Embedabbl'}</title>
 </svelte:head>
 
-<div>
+<div class="overflow-hidden">
 	{#if isValid}
 		<CoreLoader {core} {contentUrl} />
 	{:else if core && !contentUrl}

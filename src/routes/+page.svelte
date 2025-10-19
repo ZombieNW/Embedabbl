@@ -24,7 +24,7 @@
 	{@html HighlightStyle}
 </svelte:head>
 
-<div class="min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-800 to-slate-950 text-slate-100">
+<div class="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-800 to-slate-950 text-slate-100">
 	<div class="mx-auto">
 		<!-- Header -->
 		<div class="p-8 text-center">
@@ -38,9 +38,9 @@
 		</div>
 
 		<!-- Main Section -->
-		<div class="mx-auto flex w-full justify-center">
+		<div class="mx-auto flex w-full flex-col justify-center p-8 lg:flex-row">
 			<!-- Quick Start -->
-			<div class="m-8 w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6">
+			<div class="w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6">
 				<h2 class="mb-4 text-3xl font-bold text-white">Quick Start</h2>
 
 				<div class="space-y-4">
@@ -66,10 +66,10 @@
 			</div>
 
 			<!-- Cores -->
-			<div class="m-8 w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6">
+			<div class="mt-8 ml-0 w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6 lg:mt-0 lg:ml-8">
 				<h2 class="mb-4 text-3xl font-bold text-white">Cores & Examples:</h2>
 
-				<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 					{#each coreList as core}
 						<div class="rounded-lg border border-gray-700 bg-gray-800/50 p-6 transition hover:border-blue-500">
 							<h3 class="mb-2 text-xl font-bold text-white">{core.name}</h3>
@@ -99,9 +99,9 @@
 		</div>
 
 		<!-- Footer -->
-		<div class="text-center text-gray-500">
+		<div class="mb-6 text-center text-gray-500">
 			<p>Embdbl v2 - ZombieNW</p>
-			<p class="mt-2 text-sm">Made with ❤️ and SvelteKit</p>
+			<p class="mt-1 text-sm">Made with ❤️ and SvelteKit</p>
 		</div>
 	</div>
 </div>
