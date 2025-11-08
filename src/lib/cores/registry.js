@@ -61,6 +61,23 @@ export const cores = {
 				swfObject.embedSWF(contentUrl, container, container.offsetWidth, container.offsetHeight);
 			}
 		}
+	},
+	waflash: {
+		id: 'waflash',
+		name: 'WAFlash',
+		description: 'Flash Emulator',
+		paramName: 'swf',
+		scripts: [''],
+		module: true,
+		initialize: async (container, contentUrl) => {}
+	},
+	forkphorus: {
+		id: 'forkphorus',
+		name: 'Forkphorus',
+		description: 'Scratch Player',
+		paramName: 'id',
+		scripts: [''],
+		initialize: async (container, contentUrl) => {}
 	}
 };
 

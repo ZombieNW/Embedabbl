@@ -7,12 +7,13 @@
 	let contentUrl = null;
 	$: coreId = $page.params.core;
 	$: core = cores[coreId];
-	$: isValid = core && contentUrl;
+	$: isValid = core && contentUrl && contentUrl != 'not-found';
 	$: contentUrl;
 
 	onMount(() => {
 		const urlParams = new URLSearchParams(window.location.search);
-		contentUrl = urlParams.get(core.paramName);
+		contentUrl = urlParams.get(core.paramName) || 'not-found'; // Set it to a sentinel value if its actually not found
+		console.log('Content URL:', contentUrl);
 	});
 </script>
 
@@ -23,7 +24,15 @@
 <div class="overflow-hidden">
 	{#if isValid}
 		<CoreLoader {core} {contentUrl} />
+		<!-- Core loaded but url hasn't yet loaded -->
 	{:else if core && !contentUrl}
+		<div class="absolute inset-0 flex items-center justify-center bg-gray-900">
+			<div class="text-center">
+				<div class="mb-4 inline-block h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500"></div>
+				<p class="text-gray-300">Loading {core.name}...</p>
+			</div>
+		</div>
+	{:else if core && contentUrl == 'not-found'}
 		<div class="absolute inset-0 flex items-center justify-center bg-slate-900">
 			<div class="max-w-lg rounded-lg border border-violet-900 bg-violet-900/10 p-6">
 				<h3 class="mb-2 text-lg font-bold text-red-500">Missing Content URL</h3>
