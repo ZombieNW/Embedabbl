@@ -4,7 +4,7 @@
 	import { xml } from 'svelte-highlight/languages';
 	import HighlightStyle from 'svelte-highlight/styles/github-dark';
 
-	const coreList = Object.values(cores);
+	const coreList = Object.values(cores).filter((core) => typeof core.advertise === 'undefined' || core.advertise);
 
 	function getExampleUrl(coreId, paramName) {
 		const examples = {

@@ -1,5 +1,7 @@
+// advertise flag asks whether or not to show the core on the home page
 export const cores = {
 	ruffle: {
+		advertise: true,
 		id: 'ruffle',
 		name: 'Ruffle',
 		description: 'Flash Emulator',
@@ -23,6 +25,7 @@ export const cores = {
 		}
 	},
 	jsdos: {
+		advertise: true,
 		id: 'jsdos',
 		name: 'JS-DOS',
 		description: 'DOS Emulator',
@@ -49,6 +52,7 @@ export const cores = {
 		}
 	},
 	awayfl: {
+		advertise: true,
 		id: 'awayfl',
 		name: 'AwayFL',
 		description: 'Flash Emulator',
@@ -63,6 +67,7 @@ export const cores = {
 		}
 	},
 	waflash: {
+		advertise: false,
 		id: 'waflash',
 		name: 'WAFlash',
 		description: 'Flash Emulator',
@@ -72,6 +77,7 @@ export const cores = {
 		initialize: async (container, contentUrl) => {}
 	},
 	forkphorus: {
+		advertise: false,
 		id: 'forkphorus',
 		name: 'Forkphorus',
 		description: 'Scratch Player',
