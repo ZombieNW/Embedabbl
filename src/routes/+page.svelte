@@ -100,7 +100,7 @@
 
 		<!-- Footer -->
 		<div class="mb-6 text-center text-gray-500">
-			<p>Embdbl v2 - ZombieNW</p>
+			<p>Embdbl v2 - EARLY ACCESS - ZombieNW</p>
 			<p class="mt-1 text-sm">Made with ❤️ and SvelteKit</p>
 		</div>
 	</div>
