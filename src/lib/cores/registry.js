@@ -112,6 +112,27 @@ export const cores = {
 				throw new Error('"core" parameter needed to load EmulatorJS');
 			}
 		}
+	},
+	webretro: {
+		advertise: true,
+		id: 'webretro',
+		name: 'WebRetro',
+		description: 'Retroarch Implementation powered by Emscripten',
+		paramName: 'rom',
+		scripts: ['https://binbashbanana.github.io/webretro/embed/embed.js'],
+		initialize: async (container, contentUrl) => {
+			// Secondary core url parameter
+			const urlParams = new URLSearchParams(window.location.search);
+			let coreName = urlParams.get('core') || 'not-found'; // Set it to a sentinel value if its actually not found
+
+			if (coreName == 'not-found') {
+				throw new Error('"core" parameter needed to load WebRetro');
+			}
+
+			// WebRetro
+			const WEBRETRO_DATA = 'https://binbashbanana.github.io/webretro/';
+			var frame = webretroEmbed(container, WEBRETRO_DATA, { system: coreName, rom: contentUrl });
+		}
 	}
 };
 
