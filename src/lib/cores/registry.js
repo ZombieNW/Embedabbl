@@ -77,13 +77,58 @@ export const cores = {
 		initialize: async (container, contentUrl) => {}
 	},
 	forkphorus: {
-		advertise: false,
+		advertise: true,
 		id: 'forkphorus',
 		name: 'Forkphorus',
 		description: 'Scratch Player',
 		paramName: 'id',
-		scripts: [''],
-		initialize: async (container, contentUrl) => {}
+		scripts: [
+			'https://forkphorus.github.io/lib/scratch-sb1-converter.js',
+			'https://forkphorus.github.io/lib/jszip.min.js',
+			'https://forkphorus.github.io/lib/fontfaceobserver.standalone.js',
+			'https://forkphorus.github.io/lib/canvg.min.js',
+			'https://forkphorus.github.io/lib/purify.min.js',
+			'https://forkphorus.github.io/phosphorus.dist.js',
+			'https://forkphorus.github.io/common.js'
+		],
+		prescript: async (container, contentUrl) => {
+			// Prepare Container
+			container.innerHTML = '';
+			container.id = 'player';
+
+			// Insert CSS
+			const cssUrl = 'https://forkphorus.github.io/phosphorus.css';
+			const cssLink = document.createElement('link');
+			cssLink.rel = 'stylesheet';
+			cssLink.href = cssUrl;
+			document.head.appendChild(cssLink);
+		},
+		initialize: async (container, contentUrl) => {
+			// Redirect soundbank/asset URLs
+			P.io.config.localPath = 'https://forkphorus.github.io/';
+
+			// Initialize player
+			const player = new P.player.Player();
+			new P.player.ErrorHandler(player);
+
+			// Configure player
+			player.setOptions({
+				...Common.playerOptions,
+				theme: 'dark',
+				focusOnLoad: false
+			});
+
+			// Load project
+			document.querySelector('#player').appendChild(player.root);
+			player.loadProjectById(Common.projectId).then(() => {
+				player.stage.setZoom(window.innerWidth / 480);
+			});
+
+			// Wait for player to load
+			await new Promise((resolve) => {
+				player.onload.subscribe(resolve);
+			});
+		}
 	},
 	emujs: {
 		advertise: true,
