@@ -11,7 +11,7 @@
 			ruffle: 'https://embedabbl.zombienw.com/ruffle/test.swf',
 			awayfl: 'https://embedabbl.zombienw.com/ruffle/test.swf',
 			waflash: 'https://embedabbl.zombienw.com/ruffle/test.swf',
-			emujs: 'https://embedabbl.zombienw.com/emujs/test.nes',
+			emujs: 'https://embedabbl.zombienw.com/emujs/test.nes&core=nes',
 			webretro: 'https://embedabbl.zombienw.com/emujs/test.nes',
 			jsdos: 'https://embedabbl.zombienw.com/jsdos/test.jsdos',
 			forkphorus: '191452192'

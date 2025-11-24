@@ -35,6 +35,12 @@
 			loading = true;
 			error = '';
 
+			// Run pre-script if one exists
+			if (core.prescript) {
+				console.log('Running Pre-Script');
+				await core.prescript(container, contentUrl);
+			}
+
 			// Load scripts
 			if (core.scripts && core.scripts.length > 0) {
 				const isModule = typeof core.module === 'boolean' ? core.module : false;

@@ -84,6 +84,34 @@ export const cores = {
 		paramName: 'id',
 		scripts: [''],
 		initialize: async (container, contentUrl) => {}
+	},
+	emujs: {
+		advertise: true,
+		id: 'emujs',
+		name: 'EmulatorJS',
+		description: 'Retroarch Implementation in JavaScript',
+		paramName: 'rom',
+		scripts: ['https://cdn.emulatorjs.org/stable/data/loader.js'],
+		prescript: async (container, contentUrl) => {
+			// Prepare Container
+			container.innerHTML = '';
+			container.id = 'game';
+
+			// Secondary core url parameter
+			const urlParams = new URLSearchParams(window.location.search);
+			let coreName = urlParams.get('core') || 'not-found'; // Set it to a sentinel value if its actually not found
+
+			// EmuJS Preparation
+			window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+			window.EJS_player = '#game';
+			window.EJS_core = coreName;
+			window.EJS_gameUrl = contentUrl;
+		},
+		initialize: async (container, contentUrl) => {
+			if (window.EJS_core == 'not-found') {
+				throw new Error('"core" parameter needed to load EmulatorJS');
+			}
+		}
 	}
 };
 
