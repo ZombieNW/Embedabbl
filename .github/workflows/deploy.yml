@@ -1,10 +1,9 @@
-# .github/workflows/deploy.yml
 name: Deploy SvelteKit to GitHub Pages
 
 on:
   push:
     branches:
-      - main # Or your default branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,3 +31,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          allow_empty_commit: true
+          publish_branch: gh-pages
