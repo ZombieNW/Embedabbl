@@ -6,16 +6,46 @@
 
 ![License](https://badgen.net/badge/license/MIT/red) ![Language](https://badgen.net/badge/language/JavaScript/green) ![Language](https://badgen.net/badge/language/Svelte/red)
 
-# Legacy Considerations
+# Why ?
 
-parameter names have to be both the original and the new content flag
-old urls have to work just as good
+The internet is full of great runtimes/platforms for playing games online. This project just consolidates some of these embeds into a single url-controllable webpage.
 
-## Todo
+# Cores
 
-### Cores
+> Notice! [WAFlash](https://vidkidz.github.io/) currently does not work due to licensing restrictions on redistributed source code. An in-house proxy is being developed but don't bet on it.
 
-- WebRetro
-- Forkphorus
-- EmuJS
-- WAFlash
+## [Ruffle](https://ruffle.rs/)
+
+```
+https://embedabbl.zombienw.com/ruffle?swf=[url]
+```
+
+## [AwayFL](https://awayfl.org/)
+
+```
+https://embedabbl.zombienw.com/awayfl?swf=[url]
+```
+
+## [forkphorus](https://forkphorus.github.io/)
+
+```
+https://embedabbl.zombienw.com/forkphorus?id=[scratch_id]
+```
+
+## [webretro](https://binbashbanana.github.io/webretro/)
+
+```
+https://embedabbl.zombienw.com/webretro?rom=[url]&core=[system]
+```
+
+## [EmulatorJS](https://emulatorjs.org/)
+
+```
+https://embedabbl.zombienw.com/emujs?rom=[url]&core=[system]
+```
+
+## [js-dos](https://js-dos.com/)
+
+```
+https://embedabbl.zombienw.com/jsdos?jsdos=[url]
+```
