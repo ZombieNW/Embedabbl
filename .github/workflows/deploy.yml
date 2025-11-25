@@ -30,6 +30,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          cname: embedabbl.zombienw.com
           publish_dir: ./build
           allow_empty_commit: true
           publish_branch: gh-pages
