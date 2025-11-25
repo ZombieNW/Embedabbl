@@ -49,3 +49,9 @@ https://embedabbl.zombienw.com/emujs?rom=[url]&core=[system]
 ```
 https://embedabbl.zombienw.com/jsdos?jsdos=[url]
 ```
+
+# Example Materials
+
+Test JSDos file is Doom Shareware Version by id Software.
+Test SWF file is by [DePaul University](https://condor.depaul.edu/sjost/hci430/flash-examples.htm)
+Test Scratch Project is by 10-year-old me!
