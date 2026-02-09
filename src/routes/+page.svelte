@@ -40,7 +40,7 @@
 		<!-- Main Section -->
 		<div class="mx-auto flex w-full flex-col justify-center p-8 lg:flex-row">
 			<!-- Quick Start -->
-			<div class="w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6">
+			<div class="w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6 md:w-1/2">
 				<h2 class="mb-4 text-3xl font-bold text-white">Quick Start</h2>
 
 				<div class="space-y-4">
@@ -66,7 +66,7 @@
 			</div>
 
 			<!-- Cores -->
-			<div class="mt-8 ml-0 w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6 lg:mt-0 lg:ml-8">
+			<div class="mt-8 ml-0 w-full rounded-lg border border-slate-700 bg-slate-800/50 p-6 md:w-1/2 lg:mt-0 lg:ml-8">
 				<h2 class="mb-4 text-3xl font-bold text-white">Cores & Examples:</h2>
 
 				<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
