@@ -24,7 +24,9 @@
 	{@html HighlightStyle}
 </svelte:head>
 
-<div class="grid-paper relative min-h-screen w-full overflow-x-hidden bg-slate-950 text-slate-100">
+<div
+	class="relative min-h-screen w-full overflow-x-hidden bg-slate-950 bg-gradient-to-t from-slate-950 to-indigo-950/60 text-slate-100"
+>
 	<!-- Content Wrapper -->
 	<div class="mx-auto flex flex-col items-center px-4 md:max-w-3/4">
 		<!-- Hero -->
@@ -125,22 +127,6 @@
 </div>
 
 <style lang="postcss">
-	.grid-paper {
-		isolation: isolate;
-	}
-
-	.grid-paper::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-image:
-			linear-gradient(to right, rgba(30, 26, 77, 0.5) 1px, transparent 1px),
-			linear-gradient(to bottom, rgba(30, 26, 77, 0.5) 1px, transparent 1px);
-		background-size: 48px 48px;
-		pointer-events: none;
-		z-index: -1;
-	}
-
 	/*Scrollbar Stuff*/
 	:global(::-webkit-scrollbar) {
 		width: 10px;
